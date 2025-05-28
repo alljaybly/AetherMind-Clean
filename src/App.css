@@ -1,0 +1,92 @@
+.app-container {
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(to right, #FF0077, #FFAA22);
+}
+
+.title {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-item {
+  width: 100%;
+}
+
+.input-form {
+  padding: 1rem;
+  background-color: #f8e1e8;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-title {
+  font-size: 1.5rem;
+  color: #FFAA22;
+  margin-bottom: 0.5rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #FFAA22;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.submit-button:hover {
+  background-color: #e5941a;
+}
+
+.emotion-display {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.quest-dashboard {
+  padding: 1rem;
+  background-color: #f8e8d8;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quest-title {
+  font-size: 1.5rem;
+  color: #FF0077;
+  margin-bottom: 0.5rem;
+}
+
+.quest-list {
+  margin-top: 0.5rem;
+}
+
+.quest-item {
+  padding: 0.5rem;
+  background-color: #f8e1e8;
+  border-radius: 0.25rem;
+  margin-top: 0.25rem;
+}
