@@ -17,7 +17,7 @@ function App() {
           <h2 className="emotion-display">Feeling: {emotion}</h2>
         </div>
         <div className="grid-item">
-          <QuestDashboard />
+          <QuestDashboard emotion={emotion} />
         </div>
       </div>
     </div>

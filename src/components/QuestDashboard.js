@@ -1,7 +1,16 @@
 import React from 'react';
 
-function QuestDashboard() {
-  const quests = ['Navigate Stress Nebula', 'Find Calm Core', 'Earn MindMaster Badge'];
+function QuestDashboard({ emotion }) {
+  const baseQuests = ['Navigate Stress Nebula', 'Find Calm Core', 'Earn MindMaster Badge'];
+  let dynamicQuest = '';
+
+  if (emotion === 'stress') {
+    dynamicQuest = 'Take a Break Quest';
+  } else if (emotion === 'calm') {
+    dynamicQuest = 'Meditate Deeply Quest';
+  }
+
+  const quests = dynamicQuest ? [...baseQuests, dynamicQuest] : baseQuests;
 
   return (
     <div className="quest-dashboard">
