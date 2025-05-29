@@ -142,7 +142,7 @@ function App() {
           <a href="https://x.com" target="_blank" rel="noopener noreferrer">
             Twitter
           </a>
-          <a href="mailto:allanjblythe@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:allanjblythe@gmail.com" onClick={(e) => { e.preventDefault(); window.location.href = 'mailto:allanjblythe@gmail.com'; }}>
             Feedback
           </a>
         </div>
