@@ -48,7 +48,7 @@ function App() {
     setEmotion(newEmotion);
     setEmotionHistory([...emotionHistory, newEmotion]);
     setAdvice(getMoodAdvice(newEmotion));
-    setProgress((prev) => Math.min(prev + 10, 100)); // Increment progress by 10%, max 100
+    setProgress((prev) => Math.min(prev + 10, 100));
   };
 
   const handleClear = () => {
@@ -60,19 +60,19 @@ function App() {
   };
 
   useEffect(() => {
-  const fetchQuote = async () => {
-    try {
-      const response = await fetch('https://api.quotable.io/random');
-      if (!response.ok) throw new Error('API unavailable');
-      const data = await response.json();
-      setQuote(`${data.content} — ${data.author}`);
-    } catch (error) {
-      console.log('Quote API error:', error.message);
-      setQuote('Keep going, you’ve got this! — AetherMind');
-    }
-  };
-  fetchQuote();
-}, [emotion]);
+    const fetchQuote = async () => {
+      try {
+        const response = await fetch('https://api.quotable.io/random');
+        if (!response.ok) throw new Error('API unavailable');
+        const data = await response.json();
+        setQuote(`${data.content} — ${data.author}`);
+      } catch (error) {
+        console.log('Quote API error:', error.message);
+        setQuote('Keep going, you’ve got this! — AetherMind');
+      }
+    };
+    fetchQuote();
+  }, [emotion]);
 
   return (
     <div className="app-container">
@@ -134,7 +134,7 @@ function App() {
         </div>
       </div>
       <footer className="footer">
-        <p>&copy; 2025 AetherMind. All rights reserved.</p>
+        <p>© 2025 AetherMind. All rights reserved.</p>
         <div className="social-links">
           <a href="https://github.com/alljaybly/AetherMind-Clean" target="_blank" rel="noopener noreferrer">
             GitHub

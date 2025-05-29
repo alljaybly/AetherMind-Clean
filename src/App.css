@@ -30,7 +30,6 @@
 }
 
 .emotion-display {
-  color: #333;
   font-size: 1.5em;
   margin: 10px 0;
 }
@@ -62,15 +61,40 @@
   background: #e0e0e0;
 }
 
-@keyframes gradientShift {
-  0% { background: linear-gradient(45deg, #ff416c, #ffaa40); }
-  100% { background: linear-gradient(45deg, #ffaa40, #ff416c); }
+.mood-tracker {
+  margin-top: 20px;
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+.mood-list {
+  list-style: none;
+  padding: 0;
 }
+
+.mood-item {
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: #333;
+}
+
+.advice-section, .quote-section, .progress-section {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4a90e2;
+  transition: width 0.5s ease;
+}
+
 .input-form {
   margin-bottom: 20px;
 }
@@ -113,24 +137,6 @@
   cursor: not-allowed;
 }
 
-.advice-section, .quote-section, .progress-section {
-  margin-top: 20px;
-}
-
-.progress-bar {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  height: 20px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background-color: #4a90e2;
-  transition: width 0.5s ease;
-}
-
 .footer {
   margin-top: 40px;
   padding: 20px;
@@ -151,4 +157,14 @@
 
 .social-links a:hover {
   text-decoration: underline;
+}
+
+@keyframes gradientShift {
+  0% { background: linear-gradient(45deg, #ff416c, #ffaa40); }
+  100% { background: linear-gradient(45deg, #ffaa40, #ff416c); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
