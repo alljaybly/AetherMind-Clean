@@ -71,3 +71,84 @@
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+.input-form {
+  margin-bottom: 20px;
+}
+
+.form-title {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.emotion-input {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-button, .voice-button, .clear-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #4a90e2;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover, .voice-button:hover, .clear-button:hover {
+  background-color: #357abd;
+}
+
+.voice-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.advice-section, .quote-section, .progress-section {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4a90e2;
+  transition: width 0.5s ease;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #4a90e2;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
