@@ -1,92 +1,73 @@
 .app-container {
+  text-align: center;
   min-height: 100vh;
-  padding: 1rem;
-  background: linear-gradient(to right, #FF0077, #FFAA22);
+  background: linear-gradient(45deg, #ff416c, #ffaa40);
+  padding: 20px;
+  animation: gradientShift 10s infinite alternate;
 }
 
 .title {
-  font-size: 2rem;
   color: white;
-  text-align: center;
-  margin-bottom: 1rem;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .grid-item {
-  width: 100%;
-}
-
-.input-form {
-  padding: 1rem;
-  background-color: #f8e1e8;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.input-title {
-  font-size: 1.5rem;
-  color: #FFAA22;
-  margin-bottom: 0.5rem;
-}
-
-.input-field {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #FFAA22;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-}
-
-.submit-button:hover {
-  background-color: #e5941a;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in;
 }
 
 .emotion-display {
-  font-size: 1.5rem;
-  color: white;
-  text-align: center;
+  color: #333;
+  font-size: 1.5em;
+  margin: 10px 0;
 }
 
 .quest-dashboard {
-  padding: 1rem;
-  background-color: #f8e8d8;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
 .quest-title {
-  font-size: 1.5rem;
-  color: #FF0077;
-  margin-bottom: 0.5rem;
+  font-size: 1.8em;
+  margin-bottom: 10px;
 }
 
 .quest-list {
-  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
 }
 
 .quest-item {
-  padding: 0.5rem;
-  background-color: #f8e1e8;
-  border-radius: 0.25rem;
-  margin-top: 0.25rem;
+  padding: 10px;
+  margin: 5px 0;
+  background: #f0f0f0;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.quest-item:hover {
+  transform: scale(1.05);
+  background: #e0e0e0;
+}
+
+@keyframes gradientShift {
+  0% { background: linear-gradient(45deg, #ff416c, #ffaa40); }
+  100% { background: linear-gradient(45deg, #ffaa40, #ff416c); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

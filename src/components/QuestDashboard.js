@@ -8,6 +8,12 @@ function QuestDashboard({ emotion }) {
     dynamicQuest = 'Take a Break Quest';
   } else if (emotion === 'calm') {
     dynamicQuest = 'Meditate Deeply Quest';
+  } else if (emotion === 'happy') {
+    dynamicQuest = 'Celebrate Joy Quest';
+  } else if (emotion === 'sad') {
+    dynamicQuest = 'Seek Comfort Quest';
+  } else if (emotion === 'angry') {
+    dynamicQuest = 'Cool Down Quest';
   }
 
   const quests = dynamicQuest ? [...baseQuests, dynamicQuest] : baseQuests;
