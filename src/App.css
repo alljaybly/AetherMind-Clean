@@ -117,7 +117,7 @@
   border: 1px solid #ccc;
 }
 
-.submit-button, .voice-button, .clear-button, .feedback-button {
+.submit-button, .voice-button, .clear-button, .feedback-button, .share-button {
   padding: 10px 20px;
   font-size: 1em;
   border-radius: 5px;
@@ -129,7 +129,7 @@
   margin-top: 10px;
 }
 
-.submit-button:hover, .voice-button:hover, .clear-button:hover, .feedback-button:hover {
+.submit-button:hover, .voice-button:hover, .clear-button:hover, .feedback-button:hover, .share-button:hover {
   background-color: #357abd;
 }
 

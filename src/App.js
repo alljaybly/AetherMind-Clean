@@ -12,6 +12,7 @@ function App() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [rating, setRating] = useState(0);
   const [feedbackText, setFeedbackText] = useState('');
+  const [feedbacks, setFeedbacks] = useState(() => JSON.parse(localStorage.getItem('aethermindFeedbacks') || '[]'));
 
   const getEmotionColor = (emotion) => {
     switch (emotion) {
@@ -52,6 +53,7 @@ function App() {
     setEmotionHistory([...emotionHistory, newEmotion]);
     setAdvice(getMoodAdvice(newEmotion));
     setProgress((prev) => Math.min(prev + 10, 100));
+    playSound(newEmotion);
   };
 
   const handleClear = () => {
@@ -64,11 +66,50 @@ function App() {
 
   const handleFeedbackSubmit = (e) => {
     e.preventDefault();
-    console.log('Feedback Submitted:', { rating, feedbackText });
+    const newFeedback = { rating, feedbackText, timestamp: new Date().toISOString() };
+    const updatedFeedbacks = [...feedbacks, newFeedback];
+    setFeedbacks(updatedFeedbacks);
+    localStorage.setItem('aethermindFeedbacks', JSON.stringify(updatedFeedbacks));
     alert(`Thank you for your feedback! Rating: ${rating}, Comment: ${feedbackText}`);
     setShowFeedback(false);
     setRating(0);
     setFeedbackText('');
+  };
+
+  const playSound = (emotion) => {
+    const audio = new Audio();
+    switch (emotion) {
+      case 'happy':
+        audio.src = 'https://www.soundjay.com/buttons/beep-01a.mp3';
+        break;
+      case 'stress':
+        audio.src = 'https://www.soundjay.com/buttons/beep-02.mp3';
+        break;
+      case 'calm':
+        audio.src = 'https://www.soundjay.com/nature/calm-waves-1.mp3';
+        audio.volume = 0.5;
+        break;
+      case 'sad':
+        audio.src = 'https://www.soundjay.com/misc/sad-trombone-01.mp3';
+        break;
+      case 'angry':
+        audio.src = 'https://www.soundjay.com/buttons/beep-03.mp3';
+        break;
+      default:
+        return;
+    }
+    audio.play().catch(() => console.log('Audio play failed, likely due to browser restrictions.'));
+  };
+
+  const handleShare = () => {
+    const shareText = `Check out my mood with AetherMind! Feeling: ${emotion}\n${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({ title: 'AetherMind', text: shareText, url: window.location.href })
+        .catch(() => console.log('Share failed, falling back to copy.'));
+    }
+    navigator.clipboard.writeText(shareText)
+      .then(() => alert('Link copied to clipboard!'))
+      .catch(() => alert('Failed to copy link.'));
   };
 
   useEffect(() => {
@@ -78,13 +119,14 @@ function App() {
         return;
       }
       try {
-        const response = await fetch('https://api.quotable.io/random');
+        const response = await fetch('https://type.fit/api/quotes');
         if (!response.ok) throw new Error('API unavailable');
-        const data = await response.json();
-        setQuote(`${data.content} — ${data.author}`);
+        const quotes = await response.json();
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        setQuote(`${randomQuote.text} — ${randomQuote.author || 'Unknown'}`);
       } catch (error) {
         console.log('Quote API error (Attempt ' + attempt + '):', error.message);
-        await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Wait 1s, 2s, 3s
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
         fetchQuote(attempt + 1);
       }
     };
@@ -102,6 +144,9 @@ function App() {
           </button>
           <button onClick={() => setShowFeedback(true)} className="feedback-button">
             Provide Feedback
+          </button>
+          <button onClick={handleShare} className="share-button">
+            Share
           </button>
         </div>
         <div className="grid-item">
