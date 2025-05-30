@@ -9,6 +9,9 @@ function App() {
   const [quote, setQuote] = useState('');
   const [progress, setProgress] = useState(0);
   const [advice, setAdvice] = useState('');
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [feedbackText, setFeedbackText] = useState('');
 
   const getEmotionColor = (emotion) => {
     switch (emotion) {
@@ -59,6 +62,15 @@ function App() {
     setAdvice('');
   };
 
+  const handleFeedbackSubmit = (e) => {
+    e.preventDefault();
+    console.log('Feedback Submitted:', { rating, feedbackText });
+    alert(`Thank you for your feedback! Rating: ${rating}, Comment: ${feedbackText}`);
+    setShowFeedback(false);
+    setRating(0);
+    setFeedbackText('');
+  };
+
   useEffect(() => {
     const fetchQuote = async () => {
       try {
@@ -82,6 +94,9 @@ function App() {
           <InputForm onSubmit={handleEmotionSubmit} />
           <button onClick={handleClear} className="clear-button">
             Clear Mood
+          </button>
+          <button onClick={() => setShowFeedback(true)} className="feedback-button">
+            Provide Feedback
           </button>
         </div>
         <div className="grid-item">
@@ -133,6 +148,43 @@ function App() {
           <QuestDashboard emotion={emotion} />
         </div>
       </div>
+      {showFeedback && (
+        <div className="feedback-modal">
+          <div className="feedback-content">
+            <h3>Provide Feedback</h3>
+            <form onSubmit={handleFeedbackSubmit}>
+              <label>
+                Rate the App (1-5):
+                <input
+                  type="number"
+                  min="1"
+                  max="5"
+                  value={rating}
+                  onChange={(e) => setRating(Number(e.target.value))}
+                  className="rating-input"
+                />
+              </label>
+              <label>
+                Comments:
+                <textarea
+                  value={feedbackText}
+                  onChange={(e) => setFeedbackText(e.target.value)}
+                  className="feedback-text"
+                  placeholder="Share your thoughts..."
+                />
+              </label>
+              <div className="feedback-buttons">
+                <button type="submit" className="submit-feedback">
+                  Submit
+                </button>
+                <button onClick={() => setShowFeedback(false)} className="cancel-feedback">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
       <footer className="footer">
         <p>© 2025 AetherMind. All rights reserved.</p>
         <div className="social-links">
@@ -141,9 +193,6 @@ function App() {
           </a>
           <a href="https://x.com" target="_blank" rel="noopener noreferrer">
             Twitter
-          </a>
-          <a href="mailto:allanjblythe@gmail.com" onClick={(e) => { e.preventDefault(); window.location.href = 'mailto:allanjblythe@gmail.com'; }}>
-            Feedback
           </a>
         </div>
       </footer>
