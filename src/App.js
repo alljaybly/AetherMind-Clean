@@ -14,6 +14,16 @@ function App() {
   const [feedbackText, setFeedbackText] = useState('');
   const [feedbacks, setFeedbacks] = useState(() => JSON.parse(localStorage.getItem('aethermindFeedbacks') || '[]'));
 
+  const localQuotes = [
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+    { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+    { text: "Success is not the absence of obstacles, but the courage to push through.", author: "Unknown" },
+    { text: "You are stronger than you think.", author: "Unknown" },
+    { text: "Every moment is a fresh beginning.", author: "T.S. Eliot" },
+    { text: "Keep going, you’ve got this!", author: "AetherMind" }
+  ];
+
   const getEmotionColor = (emotion) => {
     switch (emotion) {
       case 'stress':
@@ -113,24 +123,8 @@ function App() {
   };
 
   useEffect(() => {
-    const fetchQuote = async (attempt = 1) => {
-      if (attempt > 3) {
-        setQuote('Keep going, you’ve got this! — AetherMind');
-        return;
-      }
-      try {
-        const response = await fetch('https://type.fit/api/quotes');
-        if (!response.ok) throw new Error('API unavailable');
-        const quotes = await response.json();
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        setQuote(`${randomQuote.text} — ${randomQuote.author || 'Unknown'}`);
-      } catch (error) {
-        console.log('Quote API error (Attempt ' + attempt + '):', error.message);
-        await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
-        fetchQuote(attempt + 1);
-      }
-    };
-    fetchQuote();
+    const randomQuote = localQuotes[Math.floor(Math.random() * localQuotes.length)];
+    setQuote(`${randomQuote.text} — ${randomQuote.author}`);
   }, [emotion]);
 
   return (
