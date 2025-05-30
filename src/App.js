@@ -72,15 +72,20 @@ function App() {
   };
 
   useEffect(() => {
-    const fetchQuote = async () => {
+    const fetchQuote = async (attempt = 1) => {
+      if (attempt > 3) {
+        setQuote('Keep going, you’ve got this! — AetherMind');
+        return;
+      }
       try {
         const response = await fetch('https://api.quotable.io/random');
         if (!response.ok) throw new Error('API unavailable');
         const data = await response.json();
         setQuote(`${data.content} — ${data.author}`);
       } catch (error) {
-        console.log('Quote API error:', error.message);
-        setQuote('Keep going, you’ve got this! — AetherMind');
+        console.log('Quote API error (Attempt ' + attempt + '):', error.message);
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Wait 1s, 2s, 3s
+        fetchQuote(attempt + 1);
       }
     };
     fetchQuote();
